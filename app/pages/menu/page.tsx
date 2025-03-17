@@ -27,6 +27,7 @@ const Menu = () => {
 		deliveryInfo: "Доставка осуществляется бесплатно при заказе.",
 		refundInfo:
 			"Возврат денежных средств возможен в течение 14 дней с момента покупки при наличии чека и сохранении товарного вида продукции.",
+		offerLink: "/pages/offer"
 	};
 
 	const menuItems = [
@@ -429,6 +430,10 @@ const Menu = () => {
 						<strong>Условия возврата:</strong> {companyInfo.refundInfo}
 					</p>
 				</div>
+					<p>Для ознакомления с условиями оферты, пожалуйста, перейдите по следующей ссылке:</p>
+					<a href={companyInfo.offerLink} className={css.offerLink}>
+					Условия оферты
+					</a>
 			</section>
 			<button type="button" className="btn payment" onClick={goToCart}>
 				Корзина {calculateTotal() === 0 ? "" : calculateTotal() + " P"}

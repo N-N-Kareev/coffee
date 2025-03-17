@@ -1,0 +1,111 @@
+/* offer.module.css */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.offerTitle, .offerSubtitle {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.offerTitle {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.offerSubtitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Paragraph styling */
+.paragraph {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 16px;
+}
+
+.boldText {
+  font-weight: bold;
+}
+
+/* Section and layout */
+.section {
+  margin-bottom: 36px;
+}
+
+.sectionLink {
+  color: #1e90ff;
+  text-decoration: underline;
+}
+
+/* Text styling for subsections */
+.categoryName, .categoryDescription {
+  padding: 0;
+  margin: 0;
+}
+
+.categoryName {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.categoryDescription {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* Button Styling */
+.button {
+  background: rgba(123, 217, 227, 1);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.button:hover {
+  background: rgba(123, 217, 227, 0.8);
+}
+
+/* Contact and company information */
+.companyInfoSection {
+  padding: 20px;
+  background-color: #f9f9f9;
+  margin-top: 40px;
+  border-top: 1px solid #ddd;
+}
+
+.companyInfoSection .offerSubtitle {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.companyInfo p {
+  margin-bottom: 10px;
+}
+
+.companyInfo ul {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.companyInfo ul li {
+  margin-bottom: 5px;
+}
+
+.companyInfo {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+}
