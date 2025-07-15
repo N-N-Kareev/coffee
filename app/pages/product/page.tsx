@@ -1,146 +1,230 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import Image from 'next/image';
-import css from './product.module.css';
+import React, { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
+import css from "./product.module.css";
 
-const ProductPage = () => {
-  const search = useSearchParams();
-  const product = JSON.parse(search.get('product') || '{}');
-  const [cart, setCart] = useState<any[]>([]);
-  const [quantityToAdd, setQuantityToAdd] = useState(1);
-  const stateCart = search.get('cart');
-  const router = useRouter();
+interface ProductVariant {
+	size: string;
+	price: string;
+	weight: string;
+	articul: number;
+}
 
-  useEffect(() => {
-    const savedCart = localStorage.getItem('cart');
-    if (savedCart) {
-      setCart(JSON.parse(savedCart));
-    } else if (stateCart) {
-      const cartString = stateCart;
-      const initialCart = JSON.parse(decodeURIComponent(cartString)) || [];
-      setCart(initialCart);
-    }
-  }, [stateCart]);
+interface Product {
+	name: string;
+	image: string;
+	description?: string;
+	category?: { name: string; icon: string; description: string };
+	variants: ProductVariant[];
+}
 
-  useEffect(() => {
-    if (cart.length > 0) {
-      localStorage.setItem('cart', JSON.stringify(cart));
-    } else {
-      localStorage.removeItem('cart');
-    }
-  }, [cart]);
-  const addToCart = (item: any) => {
-    const existingItem = cart.find((cartItem: any) => cartItem.name === item.name);
-    if (existingItem) {
-      setCart(
-        cart.map((cartItem: any) =>
-          cartItem.name === item.name
-            ? { ...cartItem, quantity: cartItem.quantity + quantityToAdd }
-            : cartItem
-        )
-      );
-    } else {
-      setCart([...cart, { ...item, quantity: quantityToAdd }]);
-    }
-    setQuantityToAdd(1); // Сброс количества после добавления
-  };
+interface CartItem {
+	name: string;
+	price: string;
+	quantity: number;
+	image: string;
+	articul: number;
+	size: string;
+}
 
-  // const decreaseQuantity = (item: any) => {
-  //   const updatedCart = cart.map((cartItem: any) =>
-  //     cartItem.name === item.name
-  //       ? { ...cartItem, quantity: cartItem.quantity - 1 }
-  //       : cartItem
-  //   );
-  //   setCart(updatedCart.filter((cartItem: any) => cartItem.quantity > 0));
-  // };
+const ProductPage: React.FC = () => {
+	const search = useSearchParams();
+	const product: Product = JSON.parse(search.get("product") || "{}");
+	const [cart, setCart] = useState<CartItem[]>([]);
+	const [quantityToAdd, setQuantityToAdd] = useState(1);
+	const [selectedVariant, setSelectedVariant] = useState<ProductVariant | null>(
+		product.variants?.[0] || null
+	);
+	const stateCart = search.get("cart");
+	const router = useRouter();
 
-  // const increaseQuantity = (item: any) => {
-  //   const updatedCart = cart.map((cartItem: any) =>
-  //     cartItem.name === item.name
-  //       ? { ...cartItem, quantity: cartItem.quantity + 1 }
-  //       : cartItem
-  //   );
-  //   setCart(updatedCart);
-  // };
+	useEffect(() => {
+		const savedCart = localStorage.getItem("cart");
+		if (savedCart) {
+			setCart(JSON.parse(savedCart));
+		} else if (stateCart) {
+			try {
+				const initialCart = JSON.parse(decodeURIComponent(stateCart)) || [];
+				setCart(initialCart);
+			} catch (e) {
+				console.error("Error parsing cart from URL:", e);
+			}
+		}
+	}, [stateCart]);
 
-  const goToMenu = () => {
-    router.push('/pages/menu');
-  };
+	useEffect(() => {
+		if (cart.length > 0) {
+			localStorage.setItem("cart", JSON.stringify(cart));
+		} else {
+			localStorage.removeItem("cart");
+		}
+	}, [cart]);
 
-  const addNewCart = (item: any) => {
-    const existingItem = cart.find((cartItem: any) => cartItem.name === item.name);
-    if (existingItem) {
-      setCart(
-        cart.map((cartItem: any) =>
-          cartItem.name === item.name
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        )
-      );
-    } else {
-      setCart([...cart, { ...item, quantity: 1 }]);
-    }
-  };
+	useEffect(() => {
+		console.log("Product:", product);
+		console.log("Product variants:", product.variants);
+		console.log("Current selectedVariant:", selectedVariant);
+		console.log(
+			"Available variants:",
+			product.variants?.map((v) => ({
+				size: v.size,
+				price: v.price,
+				articul: v.articul,
+			}))
+		);
+	}, [product, product.variants, selectedVariant]);
 
-  const calculate = (count: number, price: string) => {
-    console.log(count);
-    
-    const clearPrice = parseFloat(price.replace(' руб.', ''));
-    return clearPrice * count;
-  };
+	const addToCart = () => {
+		if (!selectedVariant) {
+			console.error("No variant selected");
+			return;
+		}
 
-  const existingItem = cart.find((cartItem: any) => cartItem.name === product.name);
+		const cartItem: CartItem = {
+			name: `${product.name} ${selectedVariant.size}`,
+			price: selectedVariant.price,
+			quantity: quantityToAdd,
+			image: product.image,
+			articul: selectedVariant.articul,
+			size: selectedVariant.size,
+		};
 
-  return (
-    <div className={css.productPage}>
-      <button className={css.backBtn} onClick={() => router.back()}>{'<'}</button>
-      <div>
-      <div className={css.imageWrapper}>
-        <Image className={css.image} src={product.image} alt={product.name} fill />
-      </div>
-    <div className={css.content}>
-    <div className={css.productText}>
-      <p className={css.name}>{product.name}</p>
-      <p className={css.cartDescription}>{product.description}</p>
-      <p className={css.cartDescription}>{product.weight}</p>
-    </div>
-    </div>
-    {existingItem && 
-      <div className={css.quantity}>
-        <p className={css.quantityDescription}>В корзине</p>
-        <p className={css.quantityItem}> 
-          <p>{existingItem.name}</p>
-          <p>{existingItem.quantity + ' шт'}</p>
-        </p>
-      </div>
-      }
-      </div>
-    {existingItem ? (
-        <div>
-        <div className={css.quantityControls}>
-        <div className={css.countWrapper}>
-            <button className={css.countBtn} onClick={() => setQuantityToAdd(quantityToAdd - 1)} disabled={quantityToAdd <= 1}>-</button>
-            <span className={css.countField}>{quantityToAdd}</span>
-            <button className={css.countBtn} onClick={() => setQuantityToAdd(quantityToAdd + 1)}>+</button>
-          </div>
-          <button className={css.priceBtn} onClick={() => { addToCart(product); goToMenu(); }}>{'Добавить ' + calculate(quantityToAdd, product.price) + ' Р'}</button>
-        </div>
-        </div>
-      ) : (
-        
-      <div className={css.quantityControls}>
-        <div className={css.countWrapper}>
-        <button className={css.countBtn} onClick={() => setQuantityToAdd(quantityToAdd - 1)} disabled={quantityToAdd <= 1}>-</button>
-        <span className={css.countField}>{quantityToAdd}</span>
-        <button className={css.countBtn} onClick={() => setQuantityToAdd(quantityToAdd + 1)}>+</button>
-      </div>
-      <button className={css.priceBtn} onClick={() => { addToCart(product); goToMenu(); }}>{'Добавить ' + calculate(quantityToAdd, product.price) + ' Р'}</button>
-    </div>
-      )}
-    </div>
-  );
+		const existingItem = cart.find(
+			(cartItem) => cartItem.name === cartItem.name
+		);
+		if (existingItem) {
+			setCart(
+				cart.map((cartItem) =>
+					cartItem.name === cartItem.name
+						? { ...cartItem, quantity: cartItem.quantity + quantityToAdd }
+						: cartItem
+				)
+			);
+		} else {
+			setCart([...cart, cartItem]);
+		}
+
+		console.log("Добавлено в корзину:", cartItem);
+		setQuantityToAdd(1);
+	};
+
+	const calculate = (count: number, price: string) => {
+		const clearPrice = parseFloat(price.replace(" Р", ""));
+		return clearPrice * count;
+	};
+
+	const handleSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		const articul = e.target.value;
+		console.log("Selected articul:", articul);
+		const variant = product.variants.find(
+			(v) => v.articul.toString() === articul
+		);
+		console.log("Found variant:", variant);
+		if (variant) {
+			setSelectedVariant(variant);
+		} else {
+			console.error("Variant not found for articul:", articul);
+			setSelectedVariant(product.variants[0]);
+		}
+	};
+
+	const existingItems = cart.filter((cartItem) =>
+		cartItem.name.startsWith(`${product.name} `)
+	);
+
+	// Валидация
+	if (!product.variants || product.variants.length === 0) {
+		console.error("No variants available for", product.name);
+		return <p className={css.error}>Размеры недоступны</p>;
+	}
+
+	// Проверка на одинаковые размеры
+	const uniqueSizes = new Set(product.variants.map((v) => v.size));
+	if (uniqueSizes.size === 1) {
+		console.warn("All variants have the same size:", uniqueSizes);
+	}
+
+	return (
+		<div className={css.productPage}>
+			<button className={css.backBtn} onClick={() => router.back()}>
+				{"<"}
+			</button>
+			<div>
+				<div className={css.imageWrapper}>
+					<Image
+						className={css.image}
+						src={product.image}
+						alt={product.name}
+						fill
+					/>
+				</div>
+				<div className={css.content}>
+					<div className={css.productText}>
+						<p className={css.name}>{product.name}</p>
+						<p className={css.cartDescription}>{product.description}</p>
+						{selectedVariant && (
+							<p className={css.cartDescription}>{selectedVariant.weight}</p>
+						)}
+					</div>
+					<div className={css.sizeSelector}>
+						<label htmlFor="size">Выберите размер:</label>
+						<select
+							id="size"
+							value={selectedVariant?.articul.toString() || ""}
+							onChange={handleSizeChange}
+						>
+							{product.variants.map((variant) => (
+								<option
+									key={variant.articul}
+									value={variant.articul.toString()}
+								>
+									{variant.size} - {variant.price}
+								</option>
+							))}
+						</select>
+					</div>
+					{existingItems.length > 0 && (
+						<div className={css.quantity}>
+							<p className={css.quantityDescription}>В корзине</p>
+							{existingItems.map((item) => (
+								<p key={item.articul} className={css.quantityItem}>
+									<span>{item.name}</span>
+									<span>{item.quantity} шт</span>
+								</p>
+							))}
+						</div>
+					)}
+				</div>
+				<div className={css.quantityControls}>
+					<div className={css.countWrapper}>
+						<button
+							className={css.countBtn}
+							onClick={() => setQuantityToAdd(quantityToAdd - 1)}
+							disabled={quantityToAdd <= 1}
+						>
+							-
+						</button>
+						<span className={css.countField}>{quantityToAdd}</span>
+						<button
+							className={css.countBtn}
+							onClick={() => setQuantityToAdd(quantityToAdd + 1)}
+						>
+							+
+						</button>
+					</div>
+					{selectedVariant && (
+						<button className={css.priceBtn} onClick={addToCart}>
+							{"Добавить " +
+								calculate(quantityToAdd, selectedVariant.price) +
+								" Р"}
+						</button>
+					)}
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default ProductPage;

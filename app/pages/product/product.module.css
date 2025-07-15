@@ -1,194 +1,202 @@
 @font-face {
-  font-family: 'Jost';
-  src: url('/fonts/Jost-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
+	font-family: "Jost";
+	src: url("/fonts/Jost-Regular.ttf") format("truetype");
+	font-weight: 400;
+	font-style: normal;
 }
 
 @font-face {
-  font-family: 'Jost';
-  src: url('/fonts/Jost-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
+	font-family: "Jost";
+	src: url("/fonts/Jost-Bold.ttf") format("truetype");
+	font-weight: 700;
+	font-style: normal;
 }
 
 .productPage {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    justify-content: space-between;
-    font-family: 'Jost', sans-serif;
-  }
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	justify-content: space-between;
+	font-family: "Jost", sans-serif;
+}
 
-  .backBtn {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
-    background: rgba(123, 217, 227, 0.8);
-    border: none;
-    cursor: pointer;
-    border-radius: 20px;
-    border: 0;
-    z-index: 5;
-  }
-  
-  .imageWrapper {
-    position: relative;
-    width: 100%;
-    min-height: 240px;
-  }
+.backBtn {
+	position: absolute;
+	top: 8px;
+	left: 8px;
+	width: 40px;
+	height: 40px;
+	font-size: 16px;
+	background: rgba(123, 217, 227, 0.8);
+	border: none;
+	cursor: pointer;
+	border-radius: 20px;
+	border: 0;
+	z-index: 5;
+}
 
-  .image {
-    position: sticky;
-  }
+.imageWrapper {
+	position: relative;
+	width: 100%;
+	min-height: 240px;
+}
 
-  .name {
-    font-size: 20px;
-    font-weight: 400;
-    text-align: left;
-    margin-bottom: 8px;
-    color: var(--tg-theme-text-color);
-    font-family: 'Jost', sans-serif;
-  }
+.image {
+	position: sticky;
+}
 
-  .description {
-    color: var(--tg-theme-hint-color);
-  }
+.name {
+	font-size: 20px;
+	font-weight: 400;
+	text-align: left;
+	margin-bottom: 8px;
+	color: var(--tg-theme-text-color);
+	font-family: "Jost", sans-serif;
+}
 
-  .content {
-    display: flex;
-    padding: 0;
-    justify-content: space-between;
-  }
+.description {
+	color: var(--tg-theme-hint-color);
+}
 
-  .productText {
-    height: fit-content;
-    padding: 0 20px;
-    font-family: 'Jost', sans-serif;
-  }
+.content {
+	display: flex;
+	padding: 0;
+	justify-content: space-between;
+}
 
-  .quantity{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: auto;
-    height: 64px;
-    background: rgba(245, 245, 245, 1);
-    padding: 8px 20px;
-    margin-top: 48px;
-    font-family: 'Jost', sans-serif;
-  }
+.productText {
+	height: fit-content;
+	padding: 0 20px;
+	font-family: "Jost", sans-serif;
+}
 
-  .quantityDescription {
-    margin: 0;
-    font-size: 15px;
-    text-align: left;
-    color: var(--tg-theme-hint-color, rgba(0, 0, 0, 0.5));
-    font-family: 'Jost', sans-serif;
-  }
+.quantity {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: auto;
+	height: 64px;
+	background: rgba(245, 245, 245, 1);
+	padding: 8px 20px;
+	margin-top: 48px;
+	font-family: "Jost", sans-serif;
+}
 
-  p.quantityItem {
-    display: flex;
-    padding: 0 !important;
-    margin: 0 !important;
-    justify-content: space-between;
-    font-size: 15px;
-  }
-  
-  .quantityControls {
-    padding: 0;
-    width: 100%;
-    display: flex;
-    width: auto;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    margin-bottom: 20px;
-  }
-  
-  .quantityControls button {
-    height: 40px;
-    font-size: 16px;
-    background: rgba(123, 217, 227, 1);
-    border: none;
-    cursor: pointer;
-    padding: 5px 12px;
-    border-radius: 20px;
-    border: 0;
-    font-family: 'Jost', sans-serif;
-  }
-  
-  .countWrapper {
-    display: flex;
-    height: 40px;
-    align-items: center;
-    justify-content: space-between;
-    font-family: 'Jost', sans-serif;
-  }
-  
-  .countField {
-    display: flex;
-    min-width: 40px;
-    height: 40px;
-    border-radius: 20px;
-    margin: auto 8px;
-    padding: 0 10px;
-    background: rgba(215, 244, 247, 1);
-    color: var(--tg-theme-text-color);
-    align-items: center;
-    justify-content:center ;
-    font-family: 'Jost', sans-serif;
-  }
-  
-  .cartDescription {
-    font-size: 16px;
-    text-align: left;
-    margin-bottom: 8px;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: var(--tg-theme-hint-color, rgba(0, 0, 0, 0.5));
-    font-family: 'Jost', sans-serif;
-  }
+.quantityDescription {
+	margin: 0;
+	font-size: 15px;
+	text-align: left;
+	color: var(--tg-theme-hint-color, rgba(0, 0, 0, 0.5));
+	font-family: "Jost", sans-serif;
+}
 
-  .btn {
-    background: rgba(123, 217, 227, 1);
-    border: none;
-    cursor: pointer;
-    padding: 10px 20px;
-    border-radius: 20px;
-    color: var(--tg-theme-button-text-color);
-    font-family: 'Jost', sans-serif;
-  }
-  
-  .priceBtn {
-    border-radius: 20px;
-    color: var(--tg-theme-button-text-color);
-    font-family: 'Jost', sans-serif;
-  }
-  
-  button.countBtn {
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    border-radius: 20px;
-    align-items: center;
-    justify-content: center;
-    justify-items: center;
-    align-content: center;
-    justify-self: center;
-    text-align: center;
-    font-family: 'Jost', sans-serif;
-  }
-  
-  .sum {
-    font-weight: bold;
-    color: var(--tg-theme-text-color);
-    font-family: 'Jost', sans-serif;
-  }
-  
+p.quantityItem {
+	display: flex;
+	padding: 0 !important;
+	margin: 0 !important;
+	justify-content: space-between;
+	font-size: 15px;
+}
+
+.quantityControls {
+	padding: 0;
+	width: 100%;
+	display: flex;
+	width: auto;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 20px;
+	margin-bottom: 20px;
+}
+
+.quantityControls button {
+	height: 40px;
+	font-size: 16px;
+	background: rgba(123, 217, 227, 1);
+	border: none;
+	cursor: pointer;
+	padding: 5px 12px;
+	border-radius: 20px;
+	border: 0;
+	font-family: "Jost", sans-serif;
+}
+
+.countWrapper {
+	display: flex;
+	height: 40px;
+	align-items: center;
+	justify-content: space-between;
+	font-family: "Jost", sans-serif;
+}
+
+.countField {
+	display: flex;
+	min-width: 40px;
+	height: 40px;
+	border-radius: 20px;
+	margin: auto 8px;
+	padding: 0 10px;
+	background: rgba(215, 244, 247, 1);
+	color: var(--tg-theme-text-color);
+	align-items: center;
+	justify-content: center;
+	font-family: "Jost", sans-serif;
+}
+
+.cartDescription {
+	font-size: 16px;
+	text-align: left;
+	margin-bottom: 8px;
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: var(--tg-theme-hint-color, rgba(0, 0, 0, 0.5));
+	font-family: "Jost", sans-serif;
+}
+
+.btn {
+	background: rgba(123, 217, 227, 1);
+	border: none;
+	cursor: pointer;
+	padding: 10px 20px;
+	border-radius: 20px;
+	color: var(--tg-theme-button-text-color);
+	font-family: "Jost", sans-serif;
+}
+
+.priceBtn {
+	border-radius: 20px;
+	color: var(--tg-theme-button-text-color);
+	font-family: "Jost", sans-serif;
+}
+
+button.countBtn {
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	border-radius: 20px;
+	align-items: center;
+	justify-content: center;
+	justify-items: center;
+	align-content: center;
+	justify-self: center;
+	text-align: center;
+	font-family: "Jost", sans-serif;
+}
+
+.sum {
+	font-weight: bold;
+	color: var(--tg-theme-text-color);
+	font-family: "Jost", sans-serif;
+}
+
+.backToMenuBtn {
+	margin-top: 16px;
+	padding: 8px 16px;
+	background: rgba(123, 217, 227, 1);
+	color: #ffffff;
+	border: none;
+	border-radius: 12px;
+}

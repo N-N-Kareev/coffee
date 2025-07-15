@@ -200,3 +200,18 @@ button.countBtn {
 .offerLink {
 	margin-bottom: 40px;
 }
+
+.cartVariants {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin-top: 8px;
+	font-size: 14px;
+	color: var(--tg-theme-hint-color, rgba(0, 0, 0, 0.5));
+}
+
+.cartVariants span {
+	background: rgba(215, 244, 247, 1);
+	padding: 4px 8px;
+	border-radius: 8px;
+}
