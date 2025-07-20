@@ -65,36 +65,13 @@
 	margin-bottom: 20px;
 }
 
-.quantityControls {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-top: 20px;
-}
-
-.quantityControls button {
-	height: 24px;
-	background: rgba(123, 217, 227, 1);
-	border: none;
-	cursor: pointer;
-	padding: 5px 12px;
-	border-radius: 12px;
-}
-
-.countWrapper {
-	display: flex;
-	width: 116px;
-	height: 24px;
-	align-items: center;
-	justify-content: space-between;
-}
-
-.countField {
-	min-width: 40px;
-	border-radius: 20px;
-	margin: auto 8px;
+.quantityBadge {
 	background: rgba(215, 244, 247, 1);
+	border-radius: 12px;
+	padding: 4px 8px;
+	font-size: 12px;
 	color: var(--tg-theme-text-color);
+	margin-left: 8px;
 }
 
 .cartTitle {
@@ -105,7 +82,7 @@
 	color: var(--tg-theme-text-color);
 	display: -webkit-box;
 	width: 70%;
-	-webkit-line-clamp: 2; /* Количество строк, которые будут видны */
+	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -115,12 +92,11 @@
 	font-size: 12px;
 	text-align: left;
 	margin-bottom: 8px;
-	display: -webkit-box;
-	-webkit-line-clamp: 2; /* Количество строк, которые будут видны */
-	-webkit-box-orient: vertical;
+	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	color: var(--tg-theme-hint-color, rgba(0, 0, 0, 0.5));
+	max-width: 100%;
 }
 
 .cartWeight {
@@ -142,21 +118,19 @@
 
 .priceBtn {
 	width: 110px;
-	padding: 0;
+	padding: 4px 8px;
+	background: rgba(123, 217, 227, 1);
+	border: none;
+	border-radius: 8px;
 	color: var(--tg-theme-button-text-color);
+	cursor: pointer;
+	font-size: 12px;
+	text-align: center;
+	transition: background-color 0.2s;
 }
 
-button.countBtn {
-	width: 24px;
-	height: 24px;
-	padding: 0;
-	border-radius: 12px;
-	align-items: center;
-	justify-content: center;
-	justify-items: center;
-	align-content: center;
-	justify-self: center;
-	text-align: center;
+.priceBtn:hover {
+	background: rgba(100, 200, 210, 1);
 }
 
 .sum {
@@ -203,15 +177,10 @@ button.countBtn {
 
 .cartVariants {
 	display: flex;
-	flex-wrap: wrap;
-	gap: 12px;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
 	margin-top: 8px;
-	font-size: 14px;
-	color: var(--tg-theme-hint-color, rgba(0, 0, 0, 0.5));
-}
-
-.cartVariants span {
-	background: rgba(215, 244, 247, 1);
-	padding: 4px 8px;
-	border-radius: 8px;
+	position: absolute;
+	bottom: 20px;
 }

@@ -1,202 +1,187 @@
-@font-face {
-	font-family: "Jost";
-	src: url("/fonts/Jost-Regular.ttf") format("truetype");
-	font-weight: 400;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: "Jost";
-	src: url("/fonts/Jost-Bold.ttf") format("truetype");
-	font-weight: 700;
-	font-style: normal;
-}
-
 .productPage {
-	display: flex;
-	flex-direction: column;
-	height: 100vh;
-	justify-content: space-between;
-	font-family: "Jost", sans-serif;
+	padding: 20px;
+	color: var(--tg-theme-text-color);
 }
 
 .backBtn {
-	position: absolute;
-	top: 8px;
-	left: 8px;
-	width: 40px;
-	height: 40px;
-	font-size: 16px;
-	background: rgba(123, 217, 227, 0.8);
+	background: rgba(123, 217, 227, 1);
 	border: none;
+	border-radius: 8px;
+	padding: 8px 12px;
 	cursor: pointer;
-	border-radius: 20px;
-	border: 0;
-	z-index: 5;
+	font-size: 16px;
+	color: var(--tg-theme-button-text-color);
 }
 
 .imageWrapper {
 	position: relative;
 	width: 100%;
-	min-height: 240px;
+	height: 200px;
+	margin-bottom: 16px;
 }
 
 .image {
-	position: sticky;
+	border-radius: 10px;
+	object-fit: cover;
+}
+
+.content {
+	padding: 0 16px;
+}
+
+.productText {
+	margin-bottom: 16px;
 }
 
 .name {
 	font-size: 20px;
-	font-weight: 400;
-	text-align: left;
+	font-weight: 600;
 	margin-bottom: 8px;
 	color: var(--tg-theme-text-color);
-	font-family: "Jost", sans-serif;
 }
 
-.description {
-	color: var(--tg-theme-hint-color);
+.cartDescription {
+	font-size: 12px;
+	color: var(--tg-theme-hint-color, rgba(0, 0, 0, 0.5));
+	margin-bottom: 8px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
 }
 
-.content {
+.sizeSelector {
+	margin-bottom: 16px;
+}
+
+.sizeSelector p {
+	font-size: 14px;
+	margin-bottom: 8px;
+	color: var(--tg-theme-text-color);
+}
+
+.sizeButtons {
 	display: flex;
-	padding: 0;
-	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 8px;
 }
 
-.productText {
-	height: fit-content;
-	padding: 0 20px;
-	font-family: "Jost", sans-serif;
+.sizeBtn {
+	background: rgba(215, 244, 247, 1);
+	border: none;
+	border-radius: 8px;
+	padding: 4px 8px;
+	font-size: 12px;
+	cursor: pointer;
+	color: var(--tg-theme-text-color);
+	transition: background-color 0.2s;
+}
+
+.sizeBtn:hover {
+	background: rgba(123, 217, 227, 1);
+}
+
+.sizeBtn.selected {
+	background: rgba(100, 200, 210, 1);
+	color: var(--tg-theme-button-text-color);
 }
 
 .quantity {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	width: auto;
-	height: 64px;
-	background: rgba(245, 245, 245, 1);
-	padding: 8px 20px;
-	margin-top: 48px;
-	font-family: "Jost", sans-serif;
+	margin-bottom: 16px;
 }
 
 .quantityDescription {
-	margin: 0;
-	font-size: 15px;
-	text-align: left;
-	color: var(--tg-theme-hint-color, rgba(0, 0, 0, 0.5));
-	font-family: "Jost", sans-serif;
+	font-size: 14px;
+	font-weight: 600;
+	margin-bottom: 8px;
+	color: var(--tg-theme-text-color);
 }
 
-p.quantityItem {
+.quantityItem {
+	font-size: 12px;
 	display: flex;
-	padding: 0 !important;
-	margin: 0 !important;
 	justify-content: space-between;
-	font-size: 15px;
+	align-items: center;
+	color: var(--tg-theme-hint-color, rgba(0, 0, 0, 0.5));
+	margin-bottom: 8px;
+}
+
+.quantityControlsInline {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.quantityControlsInline .countBtn {
+	width: 24px;
+	height: 24px;
+	background: rgba(123, 217, 227, 1);
+	border: none;
+	border-radius: 12px;
+	cursor: pointer;
+	color: var(--tg-theme-button-text-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.quantityControlsInline .countField {
+	min-width: 40px;
+	text-align: center;
+	background: rgba(215, 244, 247, 1);
+	border-radius: 20px;
+	padding: 4px 8px;
+	color: var(--tg-theme-text-color);
 }
 
 .quantityControls {
-	padding: 0;
-	width: 100%;
 	display: flex;
-	width: auto;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0 20px;
-	margin-bottom: 20px;
-}
-
-.quantityControls button {
-	height: 40px;
-	font-size: 16px;
-	background: rgba(123, 217, 227, 1);
-	border: none;
-	cursor: pointer;
-	padding: 5px 12px;
-	border-radius: 20px;
-	border: 0;
-	font-family: "Jost", sans-serif;
+	padding: 0 16px;
 }
 
 .countWrapper {
 	display: flex;
-	height: 40px;
 	align-items: center;
-	justify-content: space-between;
-	font-family: "Jost", sans-serif;
+	gap: 8px;
+}
+
+.countBtn {
+	width: 24px;
+	height: 24px;
+	background: rgba(123, 217, 227, 1);
+	border: none;
+	border-radius: 12px;
+	cursor: pointer;
+	color: var(--tg-theme-button-text-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .countField {
-	display: flex;
 	min-width: 40px;
-	height: 40px;
-	border-radius: 20px;
-	margin: auto 8px;
-	padding: 0 10px;
+	text-align: center;
 	background: rgba(215, 244, 247, 1);
-	color: var(--tg-theme-text-color);
-	align-items: center;
-	justify-content: center;
-	font-family: "Jost", sans-serif;
-}
-
-.cartDescription {
-	font-size: 16px;
-	text-align: left;
-	margin-bottom: 8px;
-	display: -webkit-box;
-	-webkit-line-clamp: 5;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	color: var(--tg-theme-hint-color, rgba(0, 0, 0, 0.5));
-	font-family: "Jost", sans-serif;
-}
-
-.btn {
-	background: rgba(123, 217, 227, 1);
-	border: none;
-	cursor: pointer;
-	padding: 10px 20px;
 	border-radius: 20px;
-	color: var(--tg-theme-button-text-color);
-	font-family: "Jost", sans-serif;
+	padding: 4px 8px;
+	color: var(--tg-theme-text-color);
 }
 
 .priceBtn {
-	border-radius: 20px;
-	color: var(--tg-theme-button-text-color);
-	font-family: "Jost", sans-serif;
-}
-
-button.countBtn {
-	width: 40px;
-	height: 40px;
-	padding: 0;
-	border-radius: 20px;
-	align-items: center;
-	justify-content: center;
-	justify-items: center;
-	align-content: center;
-	justify-self: center;
-	text-align: center;
-	font-family: "Jost", sans-serif;
-}
-
-.sum {
-	font-weight: bold;
-	color: var(--tg-theme-text-color);
-	font-family: "Jost", sans-serif;
-}
-
-.backToMenuBtn {
-	margin-top: 16px;
-	padding: 8px 16px;
 	background: rgba(123, 217, 227, 1);
-	color: #ffffff;
 	border: none;
-	border-radius: 12px;
+	border-radius: 8px;
+	padding: 8px 16px;
+	cursor: pointer;
+	font-size: 14px;
+	color: var(--tg-theme-button-text-color);
+}
+
+.error {
+	font-size: 16px;
+	color: red;
+	text-align: center;
+	padding: 20px;
 }
