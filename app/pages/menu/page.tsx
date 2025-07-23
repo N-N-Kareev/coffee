@@ -72,7 +72,7 @@ const transformMenuItems = (data: any[]): Product[] => {
 				image: imageMap[item.category.name] || "/default.jfif",
 				description: item.description || `Состав: ${baseName.toLowerCase()}.`,
 				category: {
-					icon: svgIcons[item.category.name] || '',
+					icon: svgIcons[item.category.name] || "",
 					name: item.category.name,
 					description: item.category.description || "Описание категории.",
 				},
@@ -82,19 +82,19 @@ const transformMenuItems = (data: any[]): Product[] => {
 
 		const variants = item.sizes?.length
 			? item.sizes.map((size: any, index: number) => ({
-				size: size.size || size.weight,
-				price: `${size.price} Р`,
-				weight: size.weight || size.size || "Не указан",
-				articul: `${item.articul}-${index}`,
-			}))
+					size: size.size || size.weight,
+					price: `${size.price} Р`,
+					weight: size.weight || size.size || "Не указан",
+					articul: `${item.articul}-${index}`,
+			  }))
 			: [
-				{
-					size: item.name,
-					price: `${item.price} Р`,
-					weight: "Не указан",
-					articul: `${item.articul}-0`,
-				},
-			];
+					{
+						size: item.name,
+						price: `${item.price} Р`,
+						weight: "Не указан",
+						articul: `${item.articul}-0`,
+					},
+			  ];
 
 		groupedItems[baseName].variants.push(...variants);
 	});
@@ -110,10 +110,10 @@ const Menu: React.FC = () => {
 	const stateCart = search.get("cart");
 
 	const companyInfo = {
-		name: 'Кофейня "Mokaлайт"',
-		inn: "616712086883",
+		name: "ИП Устименко Павел Владимирович",
+		inn: "615422223889",
 		contact: {
-			email: "aprnd95@gmail.com",
+			email: "ustimenkopaul@yandex.ru",
 			address: "г Таганрог ул. Петровская 65.",
 		},
 		serviceInfo:
@@ -275,7 +275,9 @@ const Menu: React.FC = () => {
 								return (
 									<div
 										key={index}
-										className={totalQuantity > 0 ? css.selectItem : css.menuItem}
+										className={
+											totalQuantity > 0 ? css.selectItem : css.menuItem
+										}
 										onClick={() => goToProductPage(product)}
 									>
 										<div className={css.imgWrapper}>
@@ -294,8 +296,8 @@ const Menu: React.FC = () => {
 											<div className={css.cartVariants}>
 												{totalQuantity > 0 && (
 													<span className={css.quantityBadge}>
-                            {totalQuantity} шт
-                          </span>
+														{totalQuantity} шт
+													</span>
 												)}
 
 												<button
